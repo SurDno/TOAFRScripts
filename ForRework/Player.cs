@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using TOAFL.UserInput;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,6 +20,23 @@ public class Player : MonoBehaviour
     private Quaternion fixAngleN = Quaternion.Euler(0f,-90f,0f);
     private Vector3 _normal, dirP, dirN, fixDir, moveDir, helpDir, sMoveDir, sMoveDirH;
     private Transform obj;
+    
+    private Controls _controls;
+
+    private void Awake()
+    {
+        _controls = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        _controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _controls.Disable();
+    }
 
     public void Start()
     {
@@ -31,8 +49,9 @@ public class Player : MonoBehaviour
     public void Update()
     {
         // Движение по осям ХY
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        var xyInput = _controls.PlayerControls.Movement.ReadValue<Vector2>();
+        h = xyInput.x;
+        v = xyInput.y;
         /*moveDir = new Vector3(h,0,v);
         Quaternion rot = Quaternion.Euler(0,Vector3.Angle(transform.forward,moveDir),0);
         transform.rotation*=rot;*/
@@ -56,7 +75,7 @@ public class Player : MonoBehaviour
         rgb.AddForce(-currentSpeed * Time.deltaTime * (grounded ? friction : friction * 0.25f), ForceMode.VelocityChange);
 
         // Прыжок
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (_controls.PlayerControls.Jump.IsPressed() && grounded)
         {
             rgb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         }
