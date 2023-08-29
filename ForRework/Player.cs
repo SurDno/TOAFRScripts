@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using TOAFL.UserInput;
 using UnityEngine;
+using Zenject;
 
 public class Player : MonoBehaviour
 {
@@ -23,9 +23,10 @@ public class Player : MonoBehaviour
     
     private Controls _controls;
 
-    private void Awake()
+    [Inject]
+    private void Construct(Controls controls)
     {
-        _controls = new Controls();
+        _controls = controls;
     }
 
     private void OnEnable()
