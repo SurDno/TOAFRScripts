@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using TOAFL.Core.Characters;
+using TOAFL.Utils.Addressables;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -26,17 +27,15 @@ namespace TOAFL.Core.World
         {
             var reference = _playerData.PlayerReference;
 
-            var playerObject = await Addressables.LoadAssetAsync<GameObject>(reference);
-            
-            playerObject.SetActive(false);
-            
+            await Addressables.LoadAssetAsync<GameObject>(reference);
+
             var position = Vector3.zero + Vector3.up * 20f;
             var rotation = Quaternion.identity;
-            var playerObjectInstance = await Addressables.InstantiateAsync(reference, position, rotation).Task;
+            var playerObject = await AddressablesUtils.InstantiateDisabledAsync(reference, position, rotation);
             
-            _diContainer.Inject(playerObjectInstance.GetComponent<Player>());
+            _diContainer.Inject(playerObject.GetComponent<Player>());
             
-            playerObjectInstance.SetActive(true);
+            playerObject.SetActive(true);
         }
     }
 }
