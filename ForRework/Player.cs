@@ -12,6 +12,11 @@ public class Player : MonoBehaviour
     public Animator animator;
     private Rigidbody rgb;
     public Transform legs;
+
+    [Header("Camera Info")] 
+    [SerializeField] private Transform cameraFollowTransform;
+    [SerializeField] private Transform cameraLookAtTransform;
+
     private bool grounded = false, airGravity = false, down;
     private float h, v, lastHeight, dist;
     private Vector3 currentSpeed;
@@ -22,6 +27,9 @@ public class Player : MonoBehaviour
     private Transform obj;
     
     private Controls _controls;
+
+    public Transform CameraFollowTransform => cameraFollowTransform;
+    public Transform CameraLookAtTransform => cameraLookAtTransform;
 
     [Inject]
     private void Construct(Controls controls)
