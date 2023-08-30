@@ -11,7 +11,7 @@ namespace TOAFL.Core.World
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<WorldInstaller>().FromInstance(this).AsSingle();
-            Container.Bind<PlayerStaticData>().FromInstance(playerStaticData).AsSingle();
+            Container.Bind<PlayerStaticData>().FromInstance(playerStaticData).WhenInjectedInto<WorldConstructor>();
             Container.Bind<WorldConstructor>().To<WorldConstructor>().AsSingle();
         }
 
