@@ -7,7 +7,8 @@ namespace TOAFL {
 		const float HEIGHT_SCALE = 0.05f;
 		
 		void Start() {
-			TerrainData terrainData = new TerrainData();
+			var terrain = GetComponent<Terrain>();
+			TerrainData terrainData = terrain.terrainData;
 			terrainData.heightmapResolution = SIZE + 1;
 			terrainData.size = new Vector3(SIZE, SIZE, SIZE);
 
@@ -34,7 +35,8 @@ namespace TOAFL {
 			terrainData.SetHeights(0, 0, heights);
 
 			// Assign the TerrainData to the Terrain and TerrainCollider components
-			GetComponent<Terrain>().terrainData = terrainData;
+			
+			terrain.terrainData = terrainData;
 			GetComponent<TerrainCollider>().terrainData = terrainData;
 		}
 	}
