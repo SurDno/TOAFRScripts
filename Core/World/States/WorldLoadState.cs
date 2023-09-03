@@ -37,7 +37,7 @@ namespace TOAFL.Core.World
             await LoadCameraOperator();
         }
 
-        private async Task LoadPlayer()
+        private async UniTask LoadPlayer()
         {
             var reference = _playerData.PlayerReference;
             await Addressables.LoadAssetAsync<GameObject>(reference);

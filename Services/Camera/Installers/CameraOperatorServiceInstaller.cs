@@ -7,7 +7,7 @@ namespace TOAFL.Services.Camera.Installers
     {
         [SerializeField] private CameraOperatorStaticData cameraOperatorData;
 
-        public override async void InstallBindings()
+        public override void InstallBindings()
         {
             Container.Bind<CameraOperatorService>().ToSelf().AsSingle();
             Container.Bind<CameraOperatorStaticData>().FromInstance(cameraOperatorData).WhenInjectedInto<CameraOperatorService>();

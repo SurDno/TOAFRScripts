@@ -1,0 +1,24 @@
+{
+    "name": "TOAFL.World",
+    "rootNamespace": "TOAFL",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:550b1e3d613e022469772acd42b9530e",
+        "GUID:dfef692c27efaad4eabfbe93c44fc272",
+        "GUID:0ed390444cc426b42b38b8b7185f62d6",
+        "GUID:441236e93be02c845a12cf08cd4c436b",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:84651a3751eca9349aac36a66bba901b",
+        "GUID:1b30f3a15aa83ad4bbdeae4d1479b0ec"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
