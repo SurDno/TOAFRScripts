@@ -4,22 +4,25 @@ using Zenject;
 
 namespace TOAFL.Core.World
 {
-    public class WorldInstaller : MonoInstaller, IInitializable
+    public class WorldInstaller : MonoInstaller
     {
         [SerializeField] private PlayerStaticData playerStaticData;
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<WorldInstaller>().FromInstance(this).AsSingle();
-            Container.Bind<PlayerStaticData>().FromInstance(playerStaticData).WhenInjectedInto<WorldConstructor>();
-            Container.Bind<WorldConstructor>().To<WorldConstructor>().AsSingle();
+            Container.Bind<PlayerStaticData>().FromInstance(playerStaticData).AsSingle();
+            Container.Bind<WorldConstructor>().ToSelf().AsSingle();
+            Container.BindInterfacesTo<WorldRunner>().AsSingle();
+            
+            BindWorldStates();
+            
         }
 
-        public void Initialize()
+        private void BindWorldStates()
         {
-            var constructor = Container.Resolve<WorldConstructor>();
-            
-            constructor.Construct();
+            Container.Bind<WorldLoadState>().AsTransient().NonLazy();
+            Container.Bind<WorldSetupState>().AsTransient().NonLazy();
+            Container.Bind<WorldGameState>().AsTransient().NonLazy();
         }
     }
 }
