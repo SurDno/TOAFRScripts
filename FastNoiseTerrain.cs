@@ -8,7 +8,7 @@ namespace TOAFL {
 		
 		void Start() {
 			var terrain = GetComponent<Terrain>();
-			TerrainData terrainData = terrain.terrainData;
+			TerrainData terrainData = Instantiate(terrain.terrainData);
 			terrainData.heightmapResolution = SIZE + 1;
 			terrainData.size = new Vector3(SIZE, SIZE, SIZE);
 
