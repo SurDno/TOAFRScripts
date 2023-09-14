@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TOAFL {
+namespace TOAFL.Core.World {
 	public class FastNoiseTerrain : MonoBehaviour { 	
 		const int SIZE = 512;
 		const float GENERATION_SCALE = 0.02f;
